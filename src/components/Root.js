@@ -13,16 +13,16 @@ class Root extends Component {
 
     render() {
         var { increment, incrementIfOdd, incrementAsync, decrement, counter } = this.props;
-        /*return (
+        return (
             <Navigator
                 renderScene={this.renderScene.bind(this)}
                 initialRoute={{ name: 'Counter', component: Counter }}/>
-        );*/
-        return (
+        );
+        /*return (
             <View>
                 <Counter />
             </View>
-        );
+        );*/
     }
 }
 
