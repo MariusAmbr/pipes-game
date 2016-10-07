@@ -1,5 +1,5 @@
 import React, {Component,PropTypes,StyleSheet,Text,View,Navigator,TouchableHighlight} from 'react-native';
-import Counter from '../containers/Counter'
+import Game from '../containers/Game'
 
 class Root extends Component {
 
@@ -16,11 +16,11 @@ class Root extends Component {
         return (
             <Navigator
                 renderScene={this.renderScene.bind(this)}
-                initialRoute={{ name: 'Counter', component: Counter }}/>
+                initialRoute={{ name: 'Game', component: Game }}/>
         );
         /*return (
             <View>
-                <Counter />
+                <Game />
             </View>
         );*/
     }

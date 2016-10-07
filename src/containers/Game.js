@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Counter from '../components/Counter';
+import Game from '../components/Game';
 import Actions from '../actions/actions';
 
 function mapStateToProps(state) {
@@ -17,4 +17,4 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Counter);
+export default connect(mapStateToProps, mapDispatchToProps)(Game);
