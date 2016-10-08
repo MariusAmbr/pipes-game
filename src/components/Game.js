@@ -9,6 +9,7 @@ class Game extends Component {
     constructor(props){
         super(props);
         this.drawGrid = this.drawGrid.bind(this);
+        this.button1 = this.button1.bind(this);
         let image1 = require('../res/1.png');
         let image2 = require('../res/2.png');
         let image3 = require('../res/3.png');
@@ -57,6 +58,9 @@ class Game extends Component {
         }
         return array2d;
     }
+    button1(){
+
+    }
     render() {
         let dim = Dimensions.get('window');
         let localGrid = [];// = this.drawGrid(5,5);
@@ -66,14 +70,21 @@ class Game extends Component {
         var { navigator } = this.props;
         let styl = {};
         if(dim.height>dim.width){
-            styl = {marginTop:(dim.height-dim.width)/2};
+            styl;// = {marginTop:(dim.height-dim.width)/2};
         } else {
-            styl = {marginLeft:(dim.width-dim.height)/2};
+            styl;// = {marginLeft:(dim.width-dim.height)/2,width:dim.height};
         }
         return (
-            <View style={[styl]}>
-                {localGrid}
+            <View style={styles.page}>
+                <View style={styles.buttons}>
+                    <TouchableHighlight onPress={() => this.props.navigator.push({component: CustomScreen})} style={[{flex:1}]}><Text style={styles.text}>Stuff</Text></TouchableHighlight>
+                    <TouchableHighlight style={[{flex:1}]}><Text style={styles.text}>Other Stuff</Text></TouchableHighlight>
+                </View>
+                <View style={[styl,{backgroundColor:'#4242f4'}]}>
+                    {localGrid}
+                </View>
             </View>
+
         );
     }
 }
@@ -85,19 +96,24 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'row',
-        //justifyContent: 'center',
-        //alignItems: 'center',
-        backgroundColor: 'lightblue',
     },
     text: {
         fontSize: 20,
         textAlign: 'center',
         margin: 10,
+        color: '#fff'
     },
-    img: {
-        height: 50,
-        width:50,
+    buttons: {
+        backgroundColor:'#000',
+        height: 100,
+        flexDirection: 'row',
+        justifyContent: 'center'
+    },
+    page: {
+
+        flexDirection: 'column'
     }
+
 });
 
 export default Game;

@@ -54,11 +54,7 @@ class PipeNode extends Component {
                     <Animated.Image
                         style={[
                             img,
-                            {
-                                transform: [
-                                    {rotate: spin}
-                                ]
-                            }
+                            {transform: [{rotate: spin}]}
                         ]}
                         source={sprite}
                      />

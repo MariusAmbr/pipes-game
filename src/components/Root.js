@@ -6,12 +6,11 @@ class Root extends Component {
     renderScene(route, navigator) {
         const Component = route.component;
         return (
-            <Component navigator={navigator} route={route} {...this.props} />
+            <Component navigator={navigator} route={route} />
         )
     }
 
     render() {
-        var { increment, incrementIfOdd, incrementAsync, decrement, counter } = this.props;
         return (
             <Navigator
                 renderScene={this.renderScene.bind(this)}
