@@ -4,7 +4,6 @@ import Game from '../containers/Game'
 class Root extends Component {
 
     renderScene(route, navigator) {
-        console.log('RENDER SCENEs', route);
         const Component = route.component;
         return (
             <Component navigator={navigator} route={route} {...this.props} />
