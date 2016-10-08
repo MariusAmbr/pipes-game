@@ -32,7 +32,7 @@ class Game extends Component {
             for(y = 0; y < sizey; y++){
                 innerArray.push(
                     <View key={y+'xy'+x}>
-                        <PipeNode pipe={this.props.pipes[x][y]}/>
+                        <PipeNode pipe={this.props.pipes[x][y]} rotate={this.props.rotateNode}/>
                     </View>
                 );
             }

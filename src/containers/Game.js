@@ -12,7 +12,10 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         createGrid: (grid) => {
-            dispatch(Actions.createGrid(grid))
+            dispatch(Actions.createGrid(grid));
+        },
+        rotateNode: (x,y) => {
+            dispatch(Actions.rotateNode(x,y));
         }
     }
 }

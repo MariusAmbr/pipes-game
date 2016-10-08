@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
 class PipeNode extends Component {
     constructor(props){
         super(props);
-        this.rotation = new Animated.Value(0);
+        this.rotation = new Animated.Value(this.props.pipe.rotation);
         this.boop = this.boop.bind(this);
     }
     boop() {
@@ -25,20 +25,22 @@ class PipeNode extends Component {
         this.rotate();
     }
     rotate() {
-        this.rotation.setValue(0);
+        let rotateValue = this.props.pipe.rotation + 90;
+        console.log(rotateValue);
         Animated.timing(
             this.rotation,
             {
-                toValue: 1,
-                duration: 500,
-                easing: Easing.linear
+                toValue: rotateValue,
+                duration: 500
             }
-        ).start();
+        ).start(()=>{
+            this.props.rotate(this.props.pipe.x,this.props.pipe.y);
+        });
     }
     render(){
         const spin = this.rotation.interpolate({
-            inputRange: [0,1],
-            outputRange: ['0deg', '90deg']
+            inputRange: [0,360],
+            outputRange: ['0deg', '360deg']
         });
         let sprite;
         switch(this.props.pipe.spriteNum){
