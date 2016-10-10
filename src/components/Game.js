@@ -31,8 +31,8 @@ class Game extends Component {
             this.generate();
     }
 
-    drawGrid(dimensions){
-        let size = this.props.pipes.length;
+    drawGrid(size, dimensions){
+        //let size = 5;
         let siz;
         if(dimensions.height>dimensions.width){
             siz = dimensions.width/size;
@@ -68,9 +68,11 @@ class Game extends Component {
     render() {
         let dim = Dimensions.get('window');
         let localGrid = [];// = this.drawGrid(5,5);
-        if(this.props.pipes.length != 0){
-            localGrid = this.drawGrid(dim);
+        if(this.props.pipes.length!=0){
+            let size = this.props.pipes.length;
+            localGrid = this.drawGrid(size,dim);
         }
+
         var { navigator } = this.props;
         let styl = {};
         if(dim.height>dim.width){

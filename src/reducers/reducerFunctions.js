@@ -3,7 +3,7 @@ export function createGrid(state, grid){
 }
 
 export function rotateNode(state, x, y){
-    let newPipes = Object.assign({}, state.pipes);
+    let newPipes = state.pipes.slice();
     newPipes[x][y].rotation = (newPipes[x][y].rotation + 90)%360;
     newPipes[x][y].state = (newPipes[x][y].state + 1)%4;
     newPipes[x][y].accept();
