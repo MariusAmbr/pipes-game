@@ -5,7 +5,7 @@ import NavigationBar from 'react-native-navbar';
 export default class CustomScreen extends Component {
     render() {
         const leftButtonConfig = {
-            title: 'Back',
+            title: 'Cancel',
             handler: () => this.props.navigator.pop(),
         };
 

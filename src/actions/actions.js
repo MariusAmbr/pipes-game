@@ -13,6 +13,15 @@ const Actions = {
             x:X,
             y:Y
         }
+    },
+    saveOptions: (Size, StartPipe, EndPipe, Name) => {
+        return {
+            type: Constants.SAVING_OPTIONS,
+            size: Size,
+            startPipe: StartPipe,
+            endPipe: EndPipe,
+            name: Name
+        }
     }
 };
 export default Actions;

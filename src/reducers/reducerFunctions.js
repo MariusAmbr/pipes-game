@@ -9,3 +9,7 @@ export function rotateNode(state, x, y){
     newPipes[x][y].accept();
     return {...state, pipes: newPipes};
 }
+
+export function saveOptions(state, sizeNum, sNum, eNum, nName){
+    return {...state, size: sizeNum, startPipe: sNum, endPipe: eNum, name: nName};
+}

@@ -70,17 +70,17 @@ class Game extends Component {
         var { navigator } = this.props;
         let styl = {};
         if(dim.height>dim.width){
-            styl;// = {marginTop:(dim.height-dim.width)/2};
+            //styl= {marginTop:(dim.height-dim.width)/2};
         } else {
-            styl;// = {marginLeft:(dim.width-dim.height)/2,width:dim.height};
+            //styl= {marginLeft:(dim.width-dim.height)/2,width:dim.height};
         }
         return (
             <View style={styles.page}>
                 <View style={styles.buttons}>
-                    <TouchableHighlight onPress={() => this.props.navigator.push({component: CustomScreen})} style={[{flex:1}]}><Text style={styles.text}>Stuff</Text></TouchableHighlight>
-                    <TouchableHighlight style={[{flex:1}]}><Text style={styles.text}>Other Stuff</Text></TouchableHighlight>
+                    <TouchableHighlight onPress={() => this.props.navigator.push({component: CustomScreen})} style={[{flex:1},styles.button]}><Text style={styles.text}>Options</Text></TouchableHighlight>
+                    <TouchableHighlight onPress={() => this.props.navigator.pop()}style={[{flex:1},styles.button]}><Text style={styles.text}>Back to Menu</Text></TouchableHighlight>
                 </View>
-                <View style={[styl,{backgroundColor:'#4242f4'}]}>
+                <View style={[styl,styles.gridBox]}>
                     {localGrid}
                 </View>
             </View>
@@ -101,17 +101,29 @@ const styles = StyleSheet.create({
         fontSize: 20,
         textAlign: 'center',
         margin: 10,
-        color: '#fff'
     },
     buttons: {
-        backgroundColor:'#000',
         height: 100,
         flexDirection: 'row',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    button: {
+        backgroundColor: 'skyblue',
+        justifyContent: 'center',
+        borderRadius: 25,
+        height: 50,
+        width: 100,
+        margin: 10
     },
     page: {
-
         flexDirection: 'column'
+    },
+    gridBox:{
+        borderTopWidth: 2,
+        borderBottomWidth: 2,
+        borderColor: 'black',
+        backgroundColor: '#fff'
     }
 
 });
