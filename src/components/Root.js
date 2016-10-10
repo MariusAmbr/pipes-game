@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { StyleSheet,Text,View,Navigator,TouchableHighlight } from 'react-native';
-import Main from '../components/Main';
+import Main from '../containers/Main';
 import Game from '../containers/Game';
 
 class Root extends Component {

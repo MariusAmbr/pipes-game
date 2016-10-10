@@ -12,6 +12,7 @@ class Game extends Component {
         super(props);
         this.drawGrid = this.drawGrid.bind(this);
         this.generate = this.generate.bind(this);
+        this.interval;
         let image1 = require('../res/1.png');
         let image2 = require('../res/2.png');
         let image3 = require('../res/3.png');
@@ -30,7 +31,16 @@ class Game extends Component {
         if(this.props.pipes.length===0)
             this.generate();
     }
-
+    componentDidMount(){
+        this.interval = setInterval(()=>{
+            console.log("boop");
+        },5000);
+    }
+    componentWillUnmount(){
+        if(this.interval){
+            clearInterval(this.interval);
+        }
+    }
     drawGrid(size, dimensions){
         //let size = 5;
         let siz;

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet,Image,Text,View,Linking,TouchableHighlight,AlertIOS,Dimensions} from 'react-native';
+import {AsyncStorage,StyleSheet,Image,Text,View,Linking,TouchableHighlight,AlertIOS,Dimensions} from 'react-native';
 import Game from '../containers/Game.js';
 import CustomScreen from '../components/Screen.js';
 import Options from '../containers/Options.js';
@@ -9,6 +9,28 @@ class Main extends Component {
         super(props);
         this.handleGameClick = this.handleGameClick.bind(this);
         this.handleOptionsClick = this.handleOptionsClick.bind(this);
+        this.loadOptions = this.loadOptions.bind(this);
+    }
+    async loadOptions(){
+        //default
+        let newData = {
+            size: 5,
+            startPipe: 1,
+            endPipe: 1,
+            name: ''
+        };
+        try {
+            const value = await AsyncStorage.getItem('options');
+            if (value !== null){
+                newData = JSON.parse(value);
+            }
+        } catch(error){
+            console.log(error);
+        }
+        this.props.load(newData);
+    }
+    componentWillMount(){
+        this.loadOptions();
     }
     handleGameClick(){
         this.props.navigator.push({component: Game});

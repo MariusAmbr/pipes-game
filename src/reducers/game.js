@@ -1,5 +1,5 @@
 import Constants from '../constants/actionConstants';
-import { createGrid, rotateNode, changeTemp1, changeTemp2, changeTemp3, changeTemp4 } from './reducerFunctions';
+import { createGrid, rotateNode, changeTemp1, changeTemp2, changeTemp3, changeTemp4, loadOptions } from './reducerFunctions';
 
 export const initialState = {
     pipes: [],
@@ -15,7 +15,7 @@ export default function counterReducer(state = initialState, action) {
 
         case Constants.ROTATING_NODE:
             return rotateNode(state, action.x, action.y);
-            
+
         case Constants.CHANGING_TEMP_1:
             return changeTemp1(state, action.size);
 
@@ -27,6 +27,10 @@ export default function counterReducer(state = initialState, action) {
 
         case Constants.CHANGING_TEMP_4:
             return changeTemp4(state, action.name);
+
+        case Constants.LOADING_OPTIONS:
+            return loadOptions(state, action.options);
+
         default:
             return state;
     }

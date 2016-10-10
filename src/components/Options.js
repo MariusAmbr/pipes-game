@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Slider, Text, StyleSheet, TextInput} from 'react-native';
+import {AsyncStorage, View, Slider, Text, StyleSheet, TextInput} from 'react-native';
 import NavigationBar from 'react-native-navbar';
 
 class Options extends Component {
@@ -9,11 +9,28 @@ class Options extends Component {
         this.tempSNum = this.props.startPipe;
         this.tempENum = this.props.endPipe;
         this.tempNam = this.props.name;
+        this.storeOptions = this.storeOptions.bind(this);
+    }
+    async storeOptions () {
+        let obj = {
+            size: this.props.size,
+            startPipe: this.props.startPipe,
+            endPipe: this.props.endPipe,
+            name: this.props.name
+        };
+        try {
+            await AsyncStorage.setItem('options',JSON.stringify(obj));
+        } catch (error) {
+            console.log(error);
+        }
     }
     render() {
         const leftButtonConfig = {
             title: 'Save/Back',
-            handler: () => this.props.navigator.pop(),
+            handler: () => {
+                this.storeOptions();
+                this.props.navigator.pop();
+            },
         };
         return (
             <View style={{ flex: 1, backgroundColor: '#fff', }}>

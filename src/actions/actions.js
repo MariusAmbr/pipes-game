@@ -38,6 +38,12 @@ const Actions = {
             name:A
         }
     },
+    loadOptions: (obj) => {
+        return {
+            type:Constants.LOADING_OPTIONS,
+            options:obj
+        }
+    }
 
 };
 export default Actions;

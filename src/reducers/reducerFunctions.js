@@ -25,3 +25,7 @@ export function changeTemp3(state, a){
 export function changeTemp4(state, a){
     return {...state, name:a};
 }
+
+export function loadOptions(state, obj){
+    return {...state, size: obj.size, startPipe: obj.startPipe, endPipe: obj.endPipe, name: obj.name};
+}
