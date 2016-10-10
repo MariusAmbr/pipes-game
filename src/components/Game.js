@@ -1,4 +1,6 @@
-import React, {Component,PropTypes,StyleSheet,Image,Text,View,Linking,TouchableHighlight,AlertIOS,Dimensions} from 'react-native';
+import React, {Component} from 'react';
+import { StyleSheet,Image,Text,View,Linking,TouchableHighlight,AlertIOS,Dimensions } from 'react-native';
+
 import CustomScreen from './Screen';
 import Pipe from '../classes/Pipe';
 import PipeNode from './PipeNode';
@@ -9,7 +11,7 @@ class Game extends Component {
     constructor(props){
         super(props);
         this.drawGrid = this.drawGrid.bind(this);
-        this.button1 = this.button1.bind(this);
+        this.generate = this.generate.bind(this);
         let image1 = require('../res/1.png');
         let image2 = require('../res/2.png');
         let image3 = require('../res/3.png');
@@ -25,10 +27,12 @@ class Game extends Component {
     }
 
     componentWillMount(){
-        this.props.createGrid(generateGrid(5,1,1));
+        if(this.props.pipes.length===0)
+            this.generate();
     }
 
-    drawGrid(size,dimensions){
+    drawGrid(dimensions){
+        let size = this.props.pipes.length;
         let siz;
         if(dimensions.height>dimensions.width){
             siz = dimensions.width/size;
@@ -58,14 +62,14 @@ class Game extends Component {
         }
         return array2d;
     }
-    button1(){
-
+    generate(){
+        this.props.createGrid(generateGrid(this.props.size,this.props.startPipe,this.props.endPipe));
     }
     render() {
         let dim = Dimensions.get('window');
         let localGrid = [];// = this.drawGrid(5,5);
         if(this.props.pipes.length != 0){
-            localGrid = this.drawGrid(5,dim);
+            localGrid = this.drawGrid(dim);
         }
         var { navigator } = this.props;
         let styl = {};
@@ -77,7 +81,7 @@ class Game extends Component {
         return (
             <View style={styles.page}>
                 <View style={styles.buttons}>
-                    <TouchableHighlight onPress={() => this.props.navigator.push({component: CustomScreen})} style={[{flex:1},styles.button]}><Text style={styles.text}>Options</Text></TouchableHighlight>
+                    <TouchableHighlight onPress={this.generate} style={[{flex:1},styles.button]}><Text style={styles.text}>Regenerate</Text></TouchableHighlight>
                     <TouchableHighlight onPress={() => this.props.navigator.pop()}style={[{flex:1},styles.button]}><Text style={styles.text}>Back to Menu</Text></TouchableHighlight>
                 </View>
                 <View style={[styl,styles.gridBox]}>
@@ -88,9 +92,6 @@ class Game extends Component {
         );
     }
 }
-
-Game.propTypes = {
-};
 
 const styles = StyleSheet.create({
     container: {

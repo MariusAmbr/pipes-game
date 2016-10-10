@@ -1,4 +1,5 @@
-import React, {Component,PropTypes,StyleSheet,Text,View,Navigator,TouchableHighlight} from 'react-native';
+import React, {Component} from 'react';
+import {StyleSheet,Image,Text,View,Linking,TouchableHighlight,AlertIOS,Dimensions} from 'react-native';
 import Game from '../containers/Game.js';
 import CustomScreen from '../components/Screen.js';
 import Options from '../containers/Options.js';

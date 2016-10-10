@@ -14,8 +14,17 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        save: (s,sn,en,nam) => {
-            dispatch(Actions.saveOptions(s,sn,en,nam));
+        change1: (a) => {
+            dispatch(Actions.changeTemp1(a));
+        },
+        change2: (a) => {
+            dispatch(Actions.changeTemp2(a));
+        },
+        change3: (a) => {
+            dispatch(Actions.changeTemp3(a));
+        },
+        change4: (a) => {
+            dispatch(Actions.changeTemp4(a));
         }
     }
 }

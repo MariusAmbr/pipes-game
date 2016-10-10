@@ -1,4 +1,5 @@
-import React, {Component,PropTypes,StyleSheet,Image,Text,View,Linking,Animated,Easing,TouchableHighlight,AlertIOS} from 'react-native';
+import React, {Component} from 'react';
+import {StyleSheet,Image,Text,View,Linking,Animated,Easing,TouchableHighlight,AlertIOS} from 'react-native';
 import Pipe from '../classes/Pipe';
 
 class PipeNode extends Component {
@@ -63,8 +64,5 @@ class PipeNode extends Component {
         );
     }
 }
-
-PipeNode.propTypes = {
-};
 
 export default PipeNode;

@@ -7,10 +7,10 @@ import { initialStates } from '../reducers';
 
 export default function configureStore() {
 
-    const {dashboardState} = initialStates;
+    const {game} = initialStates;
 
     const initialState = {
-        dashboardState
+        game
     }
 
     const store = createStore(

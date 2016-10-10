@@ -1,4 +1,5 @@
-import React, {Component,PropTypes,StyleSheet,Text,View,Navigator,TouchableHighlight} from 'react-native';
+import React, {Component} from 'react';
+import { StyleSheet,Text,View,Navigator,TouchableHighlight } from 'react-native';
 import Main from '../components/Main';
 import Game from '../containers/Game';
 
@@ -17,16 +18,8 @@ class Root extends Component {
                 renderScene={this.renderScene.bind(this)}
                 initialRoute={{ component: Main }}/>
         );
-        /*return (
-            <View>
-                <Game />
-            </View>
-        );*/
     }
 }
-
-Root.propTypes = {
-};
 
 const styles = StyleSheet.create({
     container: {

@@ -14,14 +14,30 @@ const Actions = {
             y:Y
         }
     },
-    saveOptions: (Size, StartPipe, EndPipe, Name) => {
+    changeTemp1: (A) => {
         return {
-            type: Constants.SAVING_OPTIONS,
-            size: Size,
-            startPipe: StartPipe,
-            endPipe: EndPipe,
-            name: Name
+            type:Constants.CHANGING_TEMP_1,
+            size:A
         }
-    }
+    },
+    changeTemp2: (A) => {
+        return {
+            type:Constants.CHANGING_TEMP_2,
+            startPipe:A
+        }
+    },
+    changeTemp3: (A) => {
+        return {
+            type:Constants.CHANGING_TEMP_3,
+            endPipe:A
+        }
+    },
+    changeTemp4: (A) => {
+        return {
+            type:Constants.CHANGING_TEMP_4,
+            name:A
+        }
+    },
+
 };
 export default Actions;

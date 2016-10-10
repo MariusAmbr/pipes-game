@@ -4,8 +4,13 @@ import Game from '../components/Game';
 import Actions from '../actions/actions';
 
 function mapStateToProps(state) {
+
     return {
         pipes: state.game.pipes,
+        size: state.game.size,
+        startPipe: state.game.startPipe,
+        endPipe: state.game.endPipe,
+        name: state.game.name
     };
 }
 

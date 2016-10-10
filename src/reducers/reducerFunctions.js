@@ -10,6 +10,18 @@ export function rotateNode(state, x, y){
     return {...state, pipes: newPipes};
 }
 
-export function saveOptions(state, sizeNum, sNum, eNum, nName){
-    return {...state, size: sizeNum, startPipe: sNum, endPipe: eNum, name: nName};
+export function changeTemp1(state, a){
+    return {...state, size:a};
+}
+
+export function changeTemp2(state, a){
+    return {...state, startPipe:a};
+}
+
+export function changeTemp3(state, a){
+    return {...state, endPipe:a};
+}
+
+export function changeTemp4(state, a){
+    return {...state, name:a};
 }
