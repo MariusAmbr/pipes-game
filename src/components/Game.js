@@ -12,6 +12,7 @@ class Game extends Component {
         super(props);
         this.drawGrid = this.drawGrid.bind(this);
         this.generate = this.generate.bind(this);
+        this.regenerate = this.regenerate.bind(this);
         this.interval;
         this.images = loadImages();
     }
@@ -22,7 +23,10 @@ class Game extends Component {
     }
     componentDidMount(){
         this.interval = setInterval(()=>{
-            //this.props.spread();
+            this.props.spread();
+            if(this.props.lost){
+                clearInterval(this.interval);
+            }
         },5000);
     }
     componentWillUnmount(){
@@ -64,8 +68,26 @@ class Game extends Component {
     generate(){
         this.props.createGrid(generateGrid(this.props.size,this.props.startPipe,this.props.endPipe));
     }
+    regenerate(){
+        this.generate();
+        if(this.interval){
+            clearInterval(this.interval);
+        }
+        this.interval = setInterval(()=>{
+            this.props.spread();
+        },5000);
+    }
     render() {
         let dim = Dimensions.get('window');
+        let lose = [];
+        if(this.props.lost){
+            lose = (
+                <View style={[styles.overlay,{width:dim.width, height:dim.width+4},styles.loseContainer]}>
+                    <Text style={[styles.title,{opacity:1}]}>You Lose</Text>
+                </View>
+            );
+        }
+
         let localGrid = [];// = this.drawGrid(5,5);
         if(this.props.pipes.length!=0){
             let size = this.props.pipes.length;
@@ -82,12 +104,13 @@ class Game extends Component {
         return (
             <View style={styles.page}>
                 <View style={styles.buttons}>
-                    <TouchableHighlight onPress={this.generate} style={[{flex:1},styles.button]}><Text style={styles.text}>Regenerate</Text></TouchableHighlight>
+                    <TouchableHighlight onPress={this.regenerate} style={[{flex:1},styles.button]}><Text style={styles.text}>Regenerate</Text></TouchableHighlight>
                     <TouchableHighlight onPress={() => this.props.navigator.pop()}style={[{flex:1},styles.button]}><Text style={styles.text}>Back to Menu</Text></TouchableHighlight>
                 </View>
                 <View style={[styl,styles.gridBox]}>
                     {localGrid}
                 </View>
+                {lose}
                 <View><Text style={styles.text}>{this.props.score}</Text></View>
             </View>
 
@@ -98,7 +121,7 @@ class Game extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        flexDirection: 'row',
+        flexDirection: 'column',
     },
     text: {
         fontSize: 20,
@@ -126,8 +149,26 @@ const styles = StyleSheet.create({
         borderTopWidth: 2,
         borderBottomWidth: 2,
         borderColor: 'black',
-        backgroundColor: '#fff'
-    }
+        backgroundColor: '#fff',
+        flexDirection: 'row'
+    },
+    overlay:{
+        position: 'absolute',
+        backgroundColor: 'black',
+        opacity: 0.7,
+        top:100,
+        left:0
+    },
+    loseContainer:{
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    title: {
+        fontSize: 60,
+        textAlign: 'center',
+        marginBottom: 20,
+        color: '#fff'
+    },
 
 });
 

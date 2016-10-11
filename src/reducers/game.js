@@ -7,7 +7,8 @@ export const initialState = {
     size: 5,
     startPipe: 1,
     endPipe: 1,
-    name: ''
+    name: '',
+    lost: false
 };
 export default function counterReducer(state = initialState, action) {
     switch (action.type) {
@@ -34,6 +35,7 @@ export default function counterReducer(state = initialState, action) {
 
         case Constants.SPREADING_WATER:
             return spreadWater(state);
+
 
         default:
             return state;

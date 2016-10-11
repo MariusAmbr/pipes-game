@@ -4,14 +4,17 @@ import Pipe from '../classes/Pipe';
 
 class PipeNode extends Component {
     constructor(props){
-        super(props);
-        this.rotation = new Animated.Value(this.props.pipe.rotation);
+        super(props);        
         this.boop = this.boop.bind(this);
     }
     boop() {
         this.rotate();
     }
+    componentWillMount(){
+        this.rotation = new Animated.Value(this.props.pipe.rotation);
+    }
     rotate() {
+        console.log(this.props.pipe);
         if(!this.props.pipe.filled){
             this.rotation.setValue(this.props.pipe.rotation);
             let rotateValue = this.props.pipe.rotation + 90;

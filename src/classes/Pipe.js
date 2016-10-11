@@ -25,7 +25,6 @@ export default class Pipe {
             }
         }
         this.rotation = rotation;
-        this.rotationLeft = 0;
         //this.sprite = s_pipe[spriteNum];
         this.accept = function (){
             var accepts = [];
@@ -75,15 +74,18 @@ export default class Pipe {
         this.accept();
     }
     fillArround(pipes){
+        let amount = 0;
         for(var i in this.accepts){
             if(this.accepts[i].x>=0 && this.accepts[i].x<pipes.length){
                 if(this.accepts[i].y>=0 && this.accepts[i].y<pipes[this.accepts[i].x].length){
                     if(pipes[this.accepts[i].x][this.accepts[i].y].check(this.x,this.y)){
                         pipes[this.accepts[i].x][this.accepts[i].y].fill();
+                        amount++;
                     }
                 }
             }
         }
+        return amount;
     }
     check(otherX, otherY){
         if(this.filled || otherX<0 || otherY<0){
@@ -97,8 +99,6 @@ export default class Pipe {
         return false;
     }
     fill(){
-        if(this.rotationLeft==0){
-            this.filled = true;
-        }
+        this.filled = true;
     }
 }
