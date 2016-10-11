@@ -10,7 +10,8 @@ function mapStateToProps(state) {
         size: state.game.size,
         startPipe: state.game.startPipe,
         endPipe: state.game.endPipe,
-        name: state.game.name
+        name: state.game.name,
+        score: state.game.score
     };
 }
 
@@ -21,6 +22,9 @@ function mapDispatchToProps(dispatch) {
         },
         rotateNode: (x,y) => {
             dispatch(Actions.rotateNode(x,y));
+        },
+        spread: () => {
+            dispatch(Actions.spreadWater());
         }
     }
 }

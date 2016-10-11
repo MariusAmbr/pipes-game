@@ -38,16 +38,46 @@ class PipeNode extends Component {
             width: sz
         }
         switch(this.props.pipe.spriteNum){
-            case 0:
-                sprite = this.props.images.img1; break;
-            case 1:
-                sprite = this.props.images.img2; break;
-            case 2:
-                sprite = this.props.images.img3; break;
-            case 3:
-                sprite = this.props.images.img4; break;
-            case 4:
-                sprite = this.props.images.img5; break;
+            case 0:{
+                if(this.props.pipe.filled){
+                    sprite = this.props.images.img1_2;
+                } else {
+                    sprite = this.props.images.img1;
+                }
+                break;
+            }
+            case 1:{
+                if(this.props.pipe.filled){
+                    sprite = this.props.images.img2_2;
+                } else {
+                    sprite = this.props.images.img2;
+                }
+                break;
+            }
+            case 2:{
+                if(this.props.pipe.filled){
+                    sprite = this.props.images.img3_2;
+                } else {
+                    sprite = this.props.images.img3;
+                }
+                break;
+            }
+            case 3:{
+                if(this.props.pipe.filled){
+                    sprite = this.props.images.img4_2;
+                } else {
+                    sprite = this.props.images.img4;
+                }
+                break;
+            }
+            case 4:{
+                if(this.props.pipe.filled){
+                    sprite = this.props.images.img5_2;
+                } else {
+                    sprite = this.props.images.img5;
+                }
+                break;
+            }
         }
         return(
             <View>

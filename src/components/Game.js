@@ -4,7 +4,7 @@ import { StyleSheet,Image,Text,View,Linking,TouchableHighlight,AlertIOS,Dimensio
 import CustomScreen from './Screen';
 import Pipe from '../classes/Pipe';
 import PipeNode from './PipeNode';
-import { generateGrid } from '../functions/functions';
+import { generateGrid, loadImages } from '../functions/functions';
 
 
 class Game extends Component {
@@ -13,18 +13,7 @@ class Game extends Component {
         this.drawGrid = this.drawGrid.bind(this);
         this.generate = this.generate.bind(this);
         this.interval;
-        let image1 = require('../res/1.png');
-        let image2 = require('../res/2.png');
-        let image3 = require('../res/3.png');
-        let image4 = require('../res/4.png');
-        let image5 = require('../res/5.png');
-        this.images = {
-            img1: image1,
-            img2: image2,
-            img3: image3,
-            img4: image4,
-            img5: image5
-        }
+        this.images = loadImages();
     }
 
     componentWillMount(){
@@ -33,7 +22,7 @@ class Game extends Component {
     }
     componentDidMount(){
         this.interval = setInterval(()=>{
-            console.log("boop");
+            //this.props.spread();
         },5000);
     }
     componentWillUnmount(){
@@ -99,6 +88,7 @@ class Game extends Component {
                 <View style={[styl,styles.gridBox]}>
                     {localGrid}
                 </View>
+                <View><Text style={styles.text}>{this.props.score}</Text></View>
             </View>
 
         );

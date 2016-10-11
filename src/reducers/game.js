@@ -1,8 +1,9 @@
 import Constants from '../constants/actionConstants';
-import { createGrid, rotateNode, changeTemp1, changeTemp2, changeTemp3, changeTemp4, loadOptions } from './reducerFunctions';
+import { createGrid, rotateNode, changeTemp1, changeTemp2, changeTemp3, changeTemp4, loadOptions, spreadWater } from './reducerFunctions';
 
 export const initialState = {
     pipes: [],
+    score: 0,
     size: 5,
     startPipe: 1,
     endPipe: 1,
@@ -30,6 +31,9 @@ export default function counterReducer(state = initialState, action) {
 
         case Constants.LOADING_OPTIONS:
             return loadOptions(state, action.options);
+
+        case Constants.SPREADING_WATER:
+            return spreadWater(state);
 
         default:
             return state;

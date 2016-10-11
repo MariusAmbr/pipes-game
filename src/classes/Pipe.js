@@ -74,4 +74,31 @@ export default class Pipe {
         }
         this.accept();
     }
+    fillArround(pipes){
+        for(var i in this.accepts){
+            if(this.accepts[i].x>=0 && this.accepts[i].x<pipes.length){
+                if(this.accepts[i].y>=0 && this.accepts[i].y<pipes[this.accepts[i].x].length){
+                    if(pipes[this.accepts[i].x][this.accepts[i].y].check(this.x,this.y)){
+                        pipes[this.accepts[i].x][this.accepts[i].y].fill();
+                    }
+                }
+            }
+        }
+    }
+    check(otherX, otherY){
+        if(this.filled || otherX<0 || otherY<0){
+            return false;
+        }
+        for(var i in this.accepts){
+            if(this.accepts[i].x==otherX && this.accepts[i].y==otherY){
+                return true;
+            }
+        }
+        return false;
+    }
+    fill(){
+        if(this.rotationLeft==0){
+            this.filled = true;
+        }
+    }
 }

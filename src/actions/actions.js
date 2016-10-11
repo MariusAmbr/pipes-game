@@ -43,6 +43,11 @@ const Actions = {
             type:Constants.LOADING_OPTIONS,
             options:obj
         }
+    },
+    spreadWater: () => {
+        return {
+            type: Constants.SPREADING_WATER
+        }
     }
 
 };

@@ -29,3 +29,17 @@ export function changeTemp4(state, a){
 export function loadOptions(state, obj){
     return {...state, size: obj.size, startPipe: obj.startPipe, endPipe: obj.endPipe, name: obj.name};
 }
+
+export function spreadWater(state){
+    let newPipes = state.pipes.slice();
+    let newScore = 0;
+    for(x = 0; x < newPipes.length; x++){
+        for(y = 0; y < newPipes[x].length; y++){
+            if(newPipes[x][y].filled){
+                newPipes[x][y].fillArround(newPipes);
+                newScore++;
+            }
+        }
+    }
+    return {...state, pipes: newPipes, score: newScore};
+}

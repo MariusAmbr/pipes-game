@@ -127,3 +127,24 @@ function checkSides(randomX,randomY,array2d){
     }
     return direction;
 }
+
+export function loadImages(){
+    let image1 = require('../res/1.png');
+    let image2 = require('../res/2.png');
+    let image3 = require('../res/3.png');
+    let image4 = require('../res/4.png');
+    let image5 = require('../res/5.png');
+    let image1_2 = require('../res/11.png');
+    let image2_2 = require('../res/22.png');
+    let image3_2 = require('../res/33.png');
+    let image4_2 = require('../res/44.png');
+    let image5_2 = require('../res/55.png');
+    let images = {
+        img1: image1, img1_2: image1_2,
+        img2: image2, img2_2: image2_2,
+        img3: image3, img3_2: image3_2,
+        img4: image4, img4_2: image4_2,
+        img5: image5, img5_2: image5_2
+    }
+    return images;
+}
