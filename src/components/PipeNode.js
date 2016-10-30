@@ -4,17 +4,16 @@ import Pipe from '../classes/Pipe';
 
 class PipeNode extends Component {
     constructor(props){
-        super(props);        
+        super(props);
         this.boop = this.boop.bind(this);
     }
     boop() {
         this.rotate();
     }
     componentWillMount(){
-        this.rotation = new Animated.Value(this.props.pipe.rotation);
+
     }
     rotate() {
-        console.log(this.props.pipe);
         if(!this.props.pipe.filled){
             this.rotation.setValue(this.props.pipe.rotation);
             let rotateValue = this.props.pipe.rotation + 90;
@@ -30,6 +29,7 @@ class PipeNode extends Component {
         }
     }
     render(){
+        this.rotation = new Animated.Value(this.props.pipe.rotation);
         const spin = this.rotation.interpolate({
             inputRange: [0,360],
             outputRange: ['0deg', '360deg']

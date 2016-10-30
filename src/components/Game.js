@@ -79,11 +79,18 @@ class Game extends Component {
     }
     render() {
         let dim = Dimensions.get('window');
-        let lose = [];
-        if(this.props.lost){
-            lose = (
+        let state = [];
+        if(this.props.lost||this.props.won){
+            let text = '';
+            if(this.props.lost){
+                text = 'Lose';
+            }
+            if(this.props.won){
+                text = 'Win';
+            }
+            state = (
                 <View style={[styles.overlay,{width:dim.width, height:dim.width+4},styles.loseContainer]}>
-                    <Text style={[styles.title,{opacity:1}]}>You Lose</Text>
+                    <Text style={[styles.title,{opacity:1}]}>You {text}</Text>
                 </View>
             );
         }
@@ -110,7 +117,7 @@ class Game extends Component {
                 <View style={[styl,styles.gridBox]}>
                     {localGrid}
                 </View>
-                {lose}
+                {state}
                 <View><Text style={styles.text}>{this.props.score}</Text></View>
             </View>
 

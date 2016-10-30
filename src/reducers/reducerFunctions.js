@@ -1,5 +1,5 @@
 export function createGrid(state, grid){
-    return {...state, pipes:grid, lost: false, score: 0 };
+    return {...state, pipes:grid, lost: false, won:false, score: 0 };
 }
 
 export function rotateNode(state, x, y){
@@ -34,10 +34,14 @@ export function spreadWater(state){
     let newPipes = state.pipes.slice();
     let newScore = state.score;
     let filledPipes = [];
+    let endPipes = 0;
     for(x = 0; x < newPipes.length; x++){
         for(y = 0; y < newPipes[x].length; y++){
             if(newPipes[x][y].filled){
                 filledPipes.push(newPipes[x][y]);
+                if(newPipes[x][y].spriteNum==4){                    
+                    endPipes++;
+                }
             }
         }
     }
@@ -46,6 +50,9 @@ export function spreadWater(state){
     }
     if(newScore == state.score){
         return {...state, pipes: newPipes, lost: true};
+    }
+    if(endPipes==state.endPipe+state.startPipe){
+        return {...state, pipes:newPipes, won: true};
     }
     return {...state, pipes: newPipes, score: newScore};
 }

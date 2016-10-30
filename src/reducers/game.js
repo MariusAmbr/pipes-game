@@ -8,7 +8,8 @@ export const initialState = {
     startPipe: 1,
     endPipe: 1,
     name: '',
-    lost: false
+    lost: false,
+    won: false
 };
 export default function counterReducer(state = initialState, action) {
     switch (action.type) {

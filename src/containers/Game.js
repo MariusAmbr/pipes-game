@@ -12,7 +12,8 @@ function mapStateToProps(state) {
         endPipe: state.game.endPipe,
         name: state.game.name,
         score: state.game.score,
-        lost: state.game.lost
+        lost: state.game.lost,
+        won: state.game.won
     };
 }
 
