@@ -48,6 +48,18 @@ const Actions = {
         return {
             type: Constants.SPREADING_WATER
         }
+    },
+    loadScores: (obj) => {
+        return {
+            type: Constants.LOADING_SCORES,
+            scores:obj
+        }
+    },
+    loadFirebase: (obj) => {
+        return {
+            type: Constants.LOADING_FIREBASE,
+            firebase: obj
+        }
     }
 
 };

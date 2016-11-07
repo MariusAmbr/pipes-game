@@ -14,5 +14,8 @@
     "redux-thunk": "^2.0.1",
     "remote-redux-devtools": "^0.5.0",
     "shitty-qs": "^1.0.1"
+  },
+  "devDependencies": {
+    "firebase": "^3.5.2"
   }
 }

@@ -13,7 +13,8 @@ function mapStateToProps(state) {
         name: state.game.name,
         score: state.game.score,
         lost: state.game.lost,
-        won: state.game.won
+        won: state.game.won,
+        firebase: state.game.firebase
     };
 }
 

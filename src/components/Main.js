@@ -3,6 +3,8 @@ import {AsyncStorage,StyleSheet,Image,Text,View,Linking,TouchableHighlight,Alert
 import Game from '../containers/Game.js';
 import CustomScreen from '../components/Screen.js';
 import Options from '../containers/Options.js';
+import Scores from '../containers/Scores.js';
+import * as firebase from 'firebase';
 
 class Main extends Component {
     constructor(props){
@@ -10,6 +12,7 @@ class Main extends Component {
         this.handleGameClick = this.handleGameClick.bind(this);
         this.handleOptionsClick = this.handleOptionsClick.bind(this);
         this.loadOptions = this.loadOptions.bind(this);
+        this.handleScoresClick = this.handleScoresClick.bind(this);
     }
     async loadOptions(){
         //default
@@ -30,6 +33,17 @@ class Main extends Component {
         this.props.load(newData);
     }
     componentWillMount(){
+        if(Object.keys(this.props.firebase).length == 0){
+            var config = {
+              apiKey: "AIzaSyDSHj_tVn3ZuxgflEAfEjhlZ3LAe-VjFBk",
+              authDomain: "pipesgame-7ab9a.firebaseapp.com",
+              databaseURL: "https://pipesgame-7ab9a.firebaseio.com",
+              storageBucket: "pipesgame-7ab9a.appspot.com",
+              messagingSenderId: "114520296119"
+            };
+            let firebaseApp = firebase.initializeApp(config);
+            this.props.loadFirebase(firebaseApp);
+        }
         this.loadOptions();
     }
     handleGameClick(){
@@ -38,12 +52,16 @@ class Main extends Component {
     handleOptionsClick(){
         this.props.navigator.push({component: Options});
     }
+    handleScoresClick(){
+        this.props.navigator.push({component: Scores});
+    }
     render() {
         return (
             <View style={styles.container}>
                 <Text style={styles.title}>Pipes</Text>
                 <TouchableHighlight style={styles.button} onPress={this.handleGameClick}><Text style={styles.text}>Play</Text></TouchableHighlight>
                 <TouchableHighlight style={styles.button} onPress={this.handleOptionsClick}><Text style={styles.text}>Options</Text></TouchableHighlight>
+                <TouchableHighlight style={styles.button} onPress={this.handleScoresClick}><Text style={styles.text}>Scores</Text></TouchableHighlight>
             </View>
         );
     }

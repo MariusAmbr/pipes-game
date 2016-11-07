@@ -15,9 +15,47 @@ class Game extends Component {
         this.regenerate = this.regenerate.bind(this);
         this.interval;
         this.images = loadImages();
+        this.checkScores = this.checkScores.bind(this);
+        this.writeScores = this.writeScores.bind(this);
+        this.nameref;
+        this.score;
     }
-
+    checkScores(){
+        let ref = this.props.firebase.database().ref('players');
+        ref.once("value").then(function(snapshot){
+            let smth = snapshot.val();
+            for(let i in smth){
+                let tempName = eval("smth[i]."+this.props.name);
+                if(tempName){
+                    this.nameref = this.props.firebase.database().ref('players/'+tempName);
+                    let tempScore = eval("smth[i]."+this.props.size);
+                    if(tempScore != 0 || tempScore != undefined)
+                        this.score = tempScore;
+                }
+            }
+        }.bind(this));
+    }
+    writeScores(score){
+        let size = this.props.size;
+        let ref = this.props.firebase.database().ref('players');
+        if(!this.nameref){
+            let name = this.props.name
+            this.nameref = ref.push({ name });
+        }
+        if(this.score < score && this.score != undefined){
+            this.nameref.set({
+                size : score
+            });
+        }else if(this.score == undefined){
+            this.nameref.push({
+                size: score
+            });
+        }
+        //let player = { name: this.props.name, this.prop.score: score }
+        //ref.push()
+    }
     componentWillMount(){
+        this.checkScores()
         if(this.props.pipes.length===0)
             this.generate();
     }
@@ -69,6 +107,7 @@ class Game extends Component {
         this.props.createGrid(generateGrid(this.props.size,this.props.startPipe,this.props.endPipe));
     }
     regenerate(){
+        this.checkScores()
         this.generate();
         if(this.interval){
             clearInterval(this.interval);
@@ -87,6 +126,7 @@ class Game extends Component {
             }
             if(this.props.won){
                 text = 'Win';
+                this.writeScores(this.props.score);
             }
             state = (
                 <View style={[styles.overlay,{width:dim.width, height:dim.width+4},styles.loseContainer]}>

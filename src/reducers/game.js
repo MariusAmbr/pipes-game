@@ -9,7 +9,9 @@ export const initialState = {
     endPipe: 1,
     name: '',
     lost: false,
-    won: false
+    won: false,
+    scores: {},
+    firebase: {}
 };
 export default function counterReducer(state = initialState, action) {
     switch (action.type) {
@@ -36,6 +38,12 @@ export default function counterReducer(state = initialState, action) {
 
         case Constants.SPREADING_WATER:
             return spreadWater(state);
+
+        case Constants.LOADING_SCORES:
+            return {...state, scores: action.scores};
+
+        case Constants.LOADING_FIREBASE:
+            return {...state, firebase: action.firebase};
 
 
         default:
