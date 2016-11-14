@@ -11,7 +11,8 @@ export const initialState = {
     lost: false,
     won: false,
     scores: {},
-    firebase: {}
+    firebase: {},
+    once: false
 };
 export default function counterReducer(state = initialState, action) {
     switch (action.type) {
@@ -44,6 +45,9 @@ export default function counterReducer(state = initialState, action) {
 
         case Constants.LOADING_FIREBASE:
             return {...state, firebase: action.firebase};
+
+        case Constants.TOGGLE_ONCE:
+            return {...state, once: !state.once};
 
 
         default:

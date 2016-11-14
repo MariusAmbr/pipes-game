@@ -14,7 +14,8 @@ function mapStateToProps(state) {
         score: state.game.score,
         lost: state.game.lost,
         won: state.game.won,
-        firebase: state.game.firebase
+        firebase: state.game.firebase,
+        once: state.game.once
     };
 }
 
@@ -28,6 +29,9 @@ function mapDispatchToProps(dispatch) {
         },
         spread: () => {
             dispatch(Actions.spreadWater());
+        },
+        toggle: () => {
+            dispatch(Actions.toggleOnce());
         }
     }
 }

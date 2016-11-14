@@ -60,6 +60,11 @@ const Actions = {
             type: Constants.LOADING_FIREBASE,
             firebase: obj
         }
+    },
+    toggleOnce: () => {
+        return {
+            type: Constants.TOGGLE_ONCE
+        }
     }
 
 };
